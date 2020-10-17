@@ -13,10 +13,10 @@ resource "aws_security_group" "acme_elb" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["<cidr>"]
   }
-  
- /* # HTTP access from anywhere
+
+  /* # HTTP access from anywhere
   ingress {
     from_port   = 22
     to_port     = 22
@@ -48,8 +48,8 @@ resource "aws_elb" "acme_elb" {
     lb_port           = 80
     lb_protocol       = "http"
   }
-  
-   tags = {
+
+  tags = {
     Name = "acme_elb"
   }
 }
