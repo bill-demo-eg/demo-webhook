@@ -1,0 +1,28 @@
+Accurics CLI v1.0 ( Developer mode) Installation Steps:-
+
+Installation Steps for Mac OS
+
+If you are using Mac OS version for running your terraform plan, Please follow these steps to configure Accurics CLI
+
+1.	Copy the CLI in your usr/local/bin folder 
+	
+	cp accurics /usr/local/bin/
+       
+
+2.	Copy 'config' file in the folder where you run ?terraform plan? or terraform local directory
+	
+	cp config <terraform folder path>
+
+
+3.	Follow the below command to make sure terraform plan is successful
+
+	terraform init [any shell scripts required to set variables, etc.]
+
+
+
+4.	Finally, use the following command to scan your terraform code 
+
+	accurics plan [optional variables that you would normally pass in terraform plan]
+
+
+That's it! Now you can view your scan results on Accurics Platform.

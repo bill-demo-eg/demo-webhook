@@ -1,0 +1,511 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1maws_vpc.acme_root_demo: Refreshing state... [id=vpc-0fbfb4b9e55fb88f4][0m
+[0m[1maws_redshift_cluster.redshiftEncryptedFalse: Refreshing state... [id=tf-redshift-cluster][0m
+[0m[1maws_internet_gateway.acme_root: Refreshing state... [id=igw-0184f54d0cbba241c][0m
+[0m[1maws_subnet.acme_web: Refreshing state... [id=subnet-0edc40a0f974d1d0a][0m
+[0m[1maws_security_group.acme_web: Refreshing state... [id=sg-0e38f7ae78311f806][0m
+[0m[1maws_security_group.acme_elb: Refreshing state... [id=sg-07ea4816e0270bf2c][0m
+[0m[1maws_route.acme_root: Refreshing state... [id=r-rtb-05896cf7140e1228a1080289494][0m
+[0m[1maws_instance.acme_web: Refreshing state... [id=i-0936103b2bf992022][0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_efs_file_system.efsEncryptedFalse[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_efs_file_system" "efsEncryptedFalse" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mcreation_token[0m[0m   = "efs-test"
+      [32m+[0m [0m[1m[0mdns_name[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mencrypted[0m[0m        = false
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_mode[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mreference_name[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name" = "encrypted"
+        }
+      [32m+[0m [0m[1m[0mthroughput_mode[0m[0m  = "bursting"
+    }
+
+[1m  # aws_efs_file_system.efsNotEncrypted[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_efs_file_system" "efsNotEncrypted" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mcreation_token[0m[0m   = "efs-test"
+      [32m+[0m [0m[1m[0mdns_name[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mencrypted[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_mode[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mreference_name[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Name" = "not-encrypted"
+        }
+      [32m+[0m [0m[1m[0mthroughput_mode[0m[0m  = "bursting"
+    }
+
+[1m  # aws_elasticache_cluster.noMemcachedInElastiCache[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_elasticache_cluster" "noMemcachedInElastiCache" {
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0maz_mode[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mcache_nodes[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_address[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_id[0m[0m             = "cluster-test"
+      [32m+[0m [0m[1m[0mconfiguration_endpoint[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                 = "memcached"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mmaintenance_window[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mnode_type[0m[0m              = "cache.m4.large"
+      [32m+[0m [0m[1m[0mnum_cache_nodes[0m[0m        = 2
+      [32m+[0m [0m[1m[0mparameter_group_name[0m[0m   = "default.memcached1.4"
+      [32m+[0m [0m[1m[0mport[0m[0m                   = 11211
+      [32m+[0m [0m[1m[0mreplication_group_id[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_group_ids[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_group_names[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0msnapshot_window[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_group_name[0m[0m      = (known after apply)
+    }
+
+[1m  # aws_elasticache_cluster.redis_version_non_compliant[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_elasticache_cluster" "redis_version_non_compliant" {
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0maz_mode[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mcache_nodes[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_address[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_id[0m[0m             = "cluster-test"
+      [32m+[0m [0m[1m[0mconfiguration_endpoint[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                 = "redis"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m         = "3.2.0"
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mmaintenance_window[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mnode_type[0m[0m              = "cache.m4.large"
+      [32m+[0m [0m[1m[0mnum_cache_nodes[0m[0m        = 1
+      [32m+[0m [0m[1m[0mparameter_group_name[0m[0m   = "default.redis3.2"
+      [32m+[0m [0m[1m[0mport[0m[0m                   = 6379
+      [32m+[0m [0m[1m[0mreplication_group_id[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_group_ids[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_group_names[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0msnapshot_window[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0msubnet_group_name[0m[0m      = (known after apply)
+    }
+
+[1m  # aws_elb.acme_elb[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_elb" "acme_elb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mconnection_draining[0m[0m         = true
+      [32m+[0m [0m[1m[0mconnection_draining_timeout[0m[0m = 300
+      [32m+[0m [0m[1m[0mcross_zone_load_balancing[0m[0m   = true
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m                = 60
+      [32m+[0m [0m[1m[0minstances[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0minternal[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                        = "acme-elb"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0msource_security_group[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0msource_security_group_id[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0msubnets[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                        = {
+          [32m+[0m [0m"Name" = "acme_elb"
+        }
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                     = (known after apply)
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = (known after apply)
+          [32m+[0m [0m[1m[0minterval[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget[0m[0m              = (known after apply)
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mlistener {
+          [32m+[0m [0m[1m[0minstance_port[0m[0m     = 80
+          [32m+[0m [0m[1m[0minstance_protocol[0m[0m = "http"
+          [32m+[0m [0m[1m[0mlb_port[0m[0m           = 80
+          [32m+[0m [0m[1m[0mlb_protocol[0m[0m       = "http"
+        }
+    }
+
+[1m  # aws_instance.acme_web[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_instance" "acme_web" {
+      [32m+[0m [0m[1m[0mami[0m[0m                          = "ami-8803e0f0"
+      [32m+[0m [0m[1m[0marn[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcpu_core_count[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mcpu_threads_per_core[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mget_password_data[0m[0m            = false
+      [32m+[0m [0m[1m[0mhost_id[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                           = (known after apply)
+      [32m+[0m [0m[1m[0minstance_state[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0minstance_type[0m[0m                = "t2.micro"
+      [32m+[0m [0m[1m[0mipv6_address_count[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_addresses[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpassword_data[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mplacement_group[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mprimary_network_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_dns[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mprivate_ip[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_dns[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_ip[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0msource_dest_check[0m[0m            = true
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                         = {
+          [32m+[0m [0m"Name" = "acme_web"
+        }
+      [32m+[0m [0m[1m[0mtenancy[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mvolume_tags[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m       = (known after apply)
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mephemeral_block_device {
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m    = (known after apply)
+          [32m+[0m [0m[1m[0mvirtual_name[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mmetadata_options {
+          [32m+[0m [0m[1m[0mhttp_endpoint[0m[0m               = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_put_response_hop_limit[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mhttp_tokens[0m[0m                 = (known after apply)
+        }
+
+      [32m+[0m [0mnetwork_interface {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_index[0m[0m          = (known after apply)
+          [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m  = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_id[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # aws_internet_gateway.acme_root[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_internet_gateway" "acme_root" {
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m     = {
+          [32m+[0m [0m"Name" = "acme_root"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m   = (known after apply)
+    }
+
+[1m  # aws_key_pair.auth[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_key_pair" "auth" {
+      [32m+[0m [0m[1m[0mfingerprint[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mkey_name[0m[0m    = "terraform-poc1"
+      [32m+[0m [0m[1m[0mkey_pair_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mpublic_key[0m[0m  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDakRgmdMDvY3NHJ6xwrE828JthmXZLrXu1ZprUtkMmOQGhPseTbwIn95qYg8pd30Qc+vsWZ8SRe9gEfWrYL5E5aSllzCLMXx/CWv754gvmtQwpdbZMcKEby/ny+X+rmtd1vRYEQKkWGz6OpYlsXpkXh9H+9F6JGnecl0g003yl/Ac8ehG8sSsxV4OBTEZo7euHfedTNAPrjZeS+SKFUhmRj+UOXvDZWO1/59+V04ivk84ImdAOcQaZQXKK1UkpY50VrIecTzisqm3por3/YrrfESMReV9GHg242d5Y8X+atKgTCoEX8q0Iul3XiepTA6wXPB3dzrvthaO1BeCKal5J vipul@Vipuls-MacBook-Pro-2.local"
+    }
+
+[1m  # aws_rds_cluster.awsRdsNotEncrypted[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_rds_cluster" "awsRdsNotEncrypted" {
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mbackup_retention_period[0m[0m         = 1
+      [32m+[0m [0m[1m[0mcluster_identifier[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_identifier_prefix[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_members[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_resource_id[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mcopy_tags_to_snapshot[0m[0m           = false
+      [32m+[0m [0m[1m[0mdatabase_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdb_cluster_parameter_group_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mdb_subnet_group_name[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0menable_http_endpoint[0m[0m            = false
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                          = "aurora"
+      [32m+[0m [0m[1m[0mengine_mode[0m[0m                     = "provisioned"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mmaster_password[0m[0m                 = (sensitive value)
+      [32m+[0m [0m[1m[0mmaster_username[0m[0m                 = "test"
+      [32m+[0m [0m[1m[0mport[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mpreferred_backup_window[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpreferred_maintenance_window[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mreader_endpoint[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mskip_final_snapshot[0m[0m             = false
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m          = (known after apply)
+    }
+
+[1m  # aws_rds_cluster.storageEncryptedFalse[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_rds_cluster" "storageEncryptedFalse" {
+      [32m+[0m [0m[1m[0mapply_immediately[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mbackup_retention_period[0m[0m         = 1
+      [32m+[0m [0m[1m[0mcluster_identifier[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_identifier_prefix[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_members[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mcluster_resource_id[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mcopy_tags_to_snapshot[0m[0m           = false
+      [32m+[0m [0m[1m[0mdatabase_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdb_cluster_parameter_group_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mdb_subnet_group_name[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0menable_http_endpoint[0m[0m            = false
+      [32m+[0m [0m[1m[0mendpoint[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mengine[0m[0m                          = "aurora"
+      [32m+[0m [0m[1m[0mengine_mode[0m[0m                     = "provisioned"
+      [32m+[0m [0m[1m[0mengine_version[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mmaster_password[0m[0m                 = (sensitive value)
+      [32m+[0m [0m[1m[0mmaster_username[0m[0m                 = "test"
+      [32m+[0m [0m[1m[0mport[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mpreferred_backup_window[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpreferred_maintenance_window[0m[0m    = (known after apply)
+      [32m+[0m [0m[1m[0mreader_endpoint[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mskip_final_snapshot[0m[0m             = false
+      [32m+[0m [0m[1m[0mstorage_encrypted[0m[0m               = false
+      [32m+[0m [0m[1m[0mvpc_security_group_ids[0m[0m          = (known after apply)
+    }
+
+[1m  # aws_route.acme_root[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_route" "acme_root" {
+      [32m+[0m [0m[1m[0mdestination_cidr_block[0m[0m     = "0.0.0.0/0"
+      [32m+[0m [0m[1m[0mdestination_prefix_list_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0megress_only_gateway_id[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mgateway_id[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0minstance_id[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0minstance_owner_id[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mnat_gateway_id[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0morigin[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mroute_table_id[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mstate[0m[0m                      = (known after apply)
+    }
+
+[1m  # aws_s3_bucket.acme_main[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_s3_bucket" "acme_main" {
+      [32m+[0m [0m[1m[0macceleration_status[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0macl[0m[0m                         = "public-read"
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mbucket[0m[0m                      = "test-bucket"
+      [32m+[0m [0m[1m[0mbucket_domain_name[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mbucket_regional_domain_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m               = false
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mregion[0m[0m                      = (known after apply)
+      [32m+[0m [0m[1m[0mrequest_payer[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mwebsite_domain[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mwebsite_endpoint[0m[0m            = (known after apply)
+
+      [32m+[0m [0mversioning {
+          [32m+[0m [0m[1m[0menabled[0m[0m    = false
+          [32m+[0m [0m[1m[0mmfa_delete[0m[0m = true
+        }
+
+      [32m+[0m [0mwebsite {
+          [32m+[0m [0m[1m[0merror_document[0m[0m = "error.html"
+          [32m+[0m [0m[1m[0mindex_document[0m[0m = "index.html"
+        }
+    }
+
+[1m  # aws_security_group.acme_elb[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_security_group" "acme_elb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Used in the terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "acme_elb"
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "acme_elb"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # aws_security_group.acme_web[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_security_group" "acme_web" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Used in the terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 22
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 22
+            },
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 80
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "tcp"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 80
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "acme_web"
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "acme_web"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # aws_security_group.default-acc-sg[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_security_group" "default-acc-sg" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "default VPC security group"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "default"
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Name" = "Ps-demo"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = (known after apply)
+    }
+
+[1m  # aws_subnet.acme_web[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_subnet" "acme_web" {
+      [32m+[0m [0m[1m[0marn[0m[0m                             = (known after apply)
+      [32m+[0m [0m[1m[0massign_ipv6_address_on_creation[0m[0m = false
+      [32m+[0m [0m[1m[0mavailability_zone[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zone_id[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                      = "10.0.1.0/24"
+      [32m+[0m [0m[1m[0mid[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block_association_id[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mmap_public_ip_on_launch[0m[0m         = true
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                            = {
+          [32m+[0m [0m"Name" = "acme_web"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                          = (known after apply)
+    }
+
+[1m  # aws_vpc.acme_root[0m will be created[0m[0m
+[0m[32m  +[0m [0mresource "aws_vpc" "acme_root" {
+      [32m+[0m [0m[1m[0marn[0m[0m                              = (known after apply)
+      [32m+[0m [0m[1m[0massign_generated_ipv6_cidr_block[0m[0m = false
+      [32m+[0m [0m[1m[0mcidr_block[0m[0m                       = "10.0.0.0/16"
+      [32m+[0m [0m[1m[0mdefault_network_acl_id[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_route_table_id[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_security_group_id[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdhcp_options_id[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_classiclink_dns_support[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0menable_dns_hostnames[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0menable_dns_support[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                               = (known after apply)
+      [32m+[0m [0m[1m[0minstance_tenancy[0m[0m                 = "default"
+      [32m+[0m [0m[1m[0mipv6_association_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mipv6_cidr_block[0m[0m                  = (known after apply)
+      [32m+[0m [0m[1m[0mmain_route_table_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mowner_id[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                             = {
+          [32m+[0m [0m"Name" = "acme_root"
+        }
+    }
+
+[0m[1mPlan:[0m 17 to add, 0 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
