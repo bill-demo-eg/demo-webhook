@@ -6,5 +6,6 @@ resource "aws_redshift_cluster" "redshiftEncryptedFalse" {
   node_type          = "dc1.large"
   cluster_type       = "single-node"
 
-  encrypted          = false
+  encrypted           = true
+  publicly_accessible = false
 }
