@@ -4,6 +4,7 @@ resource "aws_efs_file_system" "efsNotEncrypted" {
   tags = {
     Name = "not-encrypted"
   }
+  encrypted = true
 }
 
 resource "aws_efs_file_system" "efsEncryptedFalse" {
@@ -13,7 +14,7 @@ resource "aws_efs_file_system" "efsEncryptedFalse" {
     Name = "encrypted"
   }
 
-  encrypted = false
+  encrypted = true
 
 
 }
