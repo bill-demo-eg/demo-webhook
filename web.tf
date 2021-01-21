@@ -24,7 +24,7 @@ resource "aws_security_group" "acme_web" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/24"]
   }
 
   # outbound internet access
@@ -52,7 +52,7 @@ resource "aws_instance" "acme_web" {
     # The default username for our AMI
     user = "ubuntu"
     host = "acme"
-    # The connection will use the local SSH agent for authentication.
+    # The connection will use the local SSH agent for authentication...
   }
 
   tags = {
