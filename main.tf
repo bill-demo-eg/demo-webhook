@@ -43,13 +43,100 @@ resource "aws_key_pair" "auth" {
 
 resource "aws_s3_bucket" "acme_main" {
   bucket = "test-bucket"
-  acl    = "public-read"
+  acl    = "private"
   versioning {
-    enabled = false
+    enabled    = true
     mfa_delete = true
   }
   website {
     index_document = "index.html"
     error_document = "error.html"
   }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+resource "aws_s3_bucket_policy" "acme_mainPolicy" {
+  bucket = "${aws_s3_bucket.acme_main.id}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "acme_main-restrict-access-to-users-or-roles",
+      "Effect": "Allow",
+      "Principal": [
+        {
+          "AWS": [
+            "arn:aws:iam::##acount_id##:role/##role_name##",
+            "arn:aws:iam::##acount_id##:user/##user_name##"
+          ]
+        }
+      ],
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.acme_main.id}/*"
+    }
+  ]
+}
+POLICY
+}
+resource "aws_flow_log" "acme_root" {
+  vpc_id          = "${aws_vpc.acme_root.id}"
+  iam_role_arn    = "##arn:aws:iam::111111111111:role/sample_role##"
+  log_destination = "${aws_s3_bucket.acme_root.arn}"
+  traffic_type    = "ALL"
+
+  tags = {
+    GeneratedBy      = "Accurics"
+    ParentResourceId = "aws_vpc.acme_root"
+  }
+}
+resource "aws_s3_bucket" "acme_root" {
+  bucket        = "acme_root_flow_log_s3_bucket"
+  acl           = "private"
+  force_destroy = true
+
+  versioning {
+    enabled    = true
+    mfa_delete = true
+  }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+resource "aws_s3_bucket_policy" "acme_root" {
+  bucket = "${aws_s3_bucket.acme_root.id}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "acme_root-restrict-access-to-users-or-roles",
+      "Effect": "Allow",
+      "Principal": [
+        {
+          "AWS": [
+            "arn:aws:iam::##acount_id##:role/##role_name##",
+            "arn:aws:iam::##acount_id##:user/##user_name##"
+          ]
+        }
+      ],
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.acme_root.id}/*"
+    }
+  ]
+}
+POLICY
 }
