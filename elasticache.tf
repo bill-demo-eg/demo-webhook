@@ -1,7 +1,7 @@
 
 resource "aws_elasticache_cluster" "noMemcachedInElastiCache" {
   cluster_id           = "cluster-test"
-  engine               = "memcached"
+  engine               = "redis"
   node_type            = "cache.m4.large"
   num_cache_nodes      = 2
   parameter_group_name = "default.memcached1.4"
@@ -14,6 +14,6 @@ resource "aws_elasticache_cluster" "redis_version_non_compliant" {
   node_type            = "cache.m4.large"
   num_cache_nodes      = 1
   parameter_group_name = "default.redis3.2"
-  engine_version       = "3.2.0"
+  engine_version       = "4.0.10"
   port                 = 6379
 }
