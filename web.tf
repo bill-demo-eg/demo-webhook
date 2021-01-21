@@ -39,6 +39,9 @@ resource "aws_security_group" "acme_web" {
     from_port   = 137
     protocol    = "tcp"
     cidr_blocks = ["192.164.0.0/24"]
+    
+    
+    
   }
 
   ingress {
