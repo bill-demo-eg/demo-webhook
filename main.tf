@@ -43,13 +43,46 @@ resource "aws_key_pair" "auth" {
 
 resource "aws_s3_bucket" "acme_main" {
   bucket = "test-bucket"
-  acl    = "public-read"
+  acl    = "private"
   versioning {
-    enabled = false
+    enabled    = true
     mfa_delete = true
   }
   website {
     index_document = "index.html"
     error_document = "error.html"
   }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm = "AES256"
+      }
+    }
+  }
+}
+resource "aws_s3_bucket_policy" "acme_main" {
+  bucket = "${aws_s3_bucket.acme_main.id}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "acme_main-restrict-access-to-users-or-roles",
+      "Effect": "Allow",
+      "Principal": [
+        {
+          "AWS": [
+            arn:aws:iam::641885301384:role/Accurics_Read_Only_Role,
+            arn:aws:iam::641885301384:user/harshit2
+          ]
+        }
+      ],
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.acme_main.id}/*"
+    }
+  ]
+}
+POLICY
 }
