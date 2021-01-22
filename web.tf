@@ -46,7 +46,7 @@ resource "aws_security_group" "default-acc-sg" {
   }
 }
 resource "aws_instance" "acme_web" {
-  # The connection block tells our provisioner how to..
+  # The connection block tells our provisioner how to..dadads
   # communicate with the resource (instance)
   connection {
     # The default username for our AMI
