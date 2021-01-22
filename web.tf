@@ -71,7 +71,7 @@ resource "aws_instance" "acme_web" {
   # Our Security group to allow HTTP and SSH access
   vpc_security_group_ids = ["${aws_security_group.acme_web.id}"]
 
-  # We're going to launch into the same subnet as our ELB. In a production
+  # We're going to launch into the same subnet as our ELB. In a productiondasdasda
   # environment it's more common to have a separate private subnet for
   # backend instances.
   subnet_id = "${aws_subnet.acme_web.id}"
