@@ -61,7 +61,7 @@ resource "aws_instance" "acme_web" {
 
   instance_type = "t2.micro"
 
-  # Lookup the correct AMI based on the region..
+  # Lookup the correct AMI based on the region..dnaja
   # we specified
   ami = "${lookup(var.aws_amis, var.aws_region)}"
 
